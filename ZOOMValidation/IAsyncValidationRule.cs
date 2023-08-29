@@ -4,7 +4,7 @@ namespace ZOOMValidation
 {
     public interface IAsyncValidationRule<T>
     {
-        string ErrorMessage { get; set; }
+        string ErrorMessage { get; }
         Task<bool> CheckAsync(T value);
     }
 }
