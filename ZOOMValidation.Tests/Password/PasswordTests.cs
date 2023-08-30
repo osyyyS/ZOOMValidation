@@ -4,6 +4,32 @@ namespace ZOOMValidation.Tests.Password
 {
     public class PasswordTests
     {
+        private const string TO_COMMON = "password is to common";
+
+        [Fact]
+        public async Task WrongTypeTest()
+        {
+            var password = new ValidatableObject<int>();
+            password.ValidationRules.Add(new UniquePasswordRule<int>(TO_COMMON));
+
+            password.Value = 123;
+            await Assert.ThrowsAsync<ArgumentException>(password.Validate);
+        }
+
+        [Fact]
+        public async Task UniquePasswordTest()
+        {
+            var password = new ValidatableObject<string>();
+            password.ValidationRules.Add(new UniquePasswordRule<string>(TO_COMMON));
+
+            password.Value = "asd";
+            Assert.False(await password.Validate());
+            Assert.Equal(TO_COMMON, password.Error);
+
+            password.Value = "[${y9mL011`@";
+            Assert.True(await password.Validate());
+        }
+
         [Fact]
         public async Task PasswordLengthTest()
         {
