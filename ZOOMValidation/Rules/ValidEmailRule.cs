@@ -4,7 +4,7 @@ namespace ZOOMValidation.Rules
 {
     public class ValidEmailRule<T> : IValidationRule<T>
     {
-        private bool removeWhiteSpaces;
+        private readonly bool removeWhiteSpaces;
         public ValidEmailRule(string errorMessage, bool removeWhiteSpaces = true)
         {
             ErrorMessage = errorMessage;
