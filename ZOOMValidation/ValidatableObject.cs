@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -45,7 +44,7 @@ namespace ZOOMValidation
 
             foreach (var asyncRule in AsyncValidationRules)
             {
-                if (await asyncRule.CheckAsync(Value) == false)
+                if (!await asyncRule.CheckAsync(Value))
                 {
                     Error = asyncRule.ErrorMessage;
                     return IsValid = false;
@@ -62,17 +61,6 @@ namespace ZOOMValidation
             if (EqualityComparer<T2>.Default.Equals(storage, value)) return false;
 
             storage = value;
-            RaisePropertyChanged(propertyName);
-
-            return true;
-        }
-
-        private bool SetProperty<T2>(ref T2 storage, T2 value, Action onChanged, [CallerMemberName] string propertyName = null)
-        {
-            if (EqualityComparer<T2>.Default.Equals(storage, value)) return false;
-
-            storage = value;
-            onChanged?.Invoke();
             RaisePropertyChanged(propertyName);
 
             return true;
