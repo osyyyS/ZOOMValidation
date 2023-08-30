@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 
 namespace ZOOMValidation.Rules
 {
@@ -21,14 +18,14 @@ namespace ZOOMValidation.Rules
             if (value is string password)
             {
                 password = removeWhiteSpaces ? password.Replace(" ", "") : password;
-                
+
                 try
                 {
                     var addr = new System.Net.Mail.MailAddress(password);
                     return addr.Address == $"{addr}";
                 }
-                catch(FormatException)
-                { 
+                catch (FormatException)
+                {
                     return false;
                 }
             }
