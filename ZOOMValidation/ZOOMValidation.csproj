@@ -9,6 +9,7 @@
     <Authors>osyyyS</Authors>
     <Title>$(AssemblyName)</Title>
     <RepositoryUrl>https://github.com/osyyyS/ZOOMValidation</RepositoryUrl>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
