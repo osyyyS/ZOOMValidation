@@ -31,7 +31,7 @@ namespace ZOOMValidation.Tests.Pair
             password2.ValidationRules.Add(new PasswordSpecialCharacterRule(ONE_SPECIAL));
 
             var pair = new ValidatablePair<string>(password1, password2);
-            pair.PairValidationRules.Add(new EqualStringRule<string>(EQUAL));
+            pair.PairValidationRules.Add(new EqualStringRule(EQUAL));
 
             pair.Item1.Value = "Asd0!asdasdasd";
             pair.Item2.Value = "Asd0!asdasdasd";
