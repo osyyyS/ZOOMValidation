@@ -7,20 +7,10 @@ namespace ZOOMValidation.Tests.Password
         private const string TO_COMMON = "password is to common";
 
         [Fact]
-        public async Task WrongTypeTest()
-        {
-            var password = new ValidatableObject<int>();
-            password.ValidationRules.Add(new UniquePasswordRule<int>(TO_COMMON));
-
-            password.Value = 123;
-            await Assert.ThrowsAsync<ArgumentException>(password.Validate);
-        }
-
-        [Fact]
         public async Task UniquePasswordTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new UniquePasswordRule<string>(TO_COMMON));
+            password.ValidationRules.Add(new UniquePasswordRule(TO_COMMON));
 
             password.Value = "asd";
             Assert.False(await password.Validate());
@@ -34,7 +24,7 @@ namespace ZOOMValidation.Tests.Password
         public async Task PasswordLengthTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new PasswordLengthRule<string>("Invalid password length.", 12, 24));
+            password.ValidationRules.Add(new PasswordLengthRule("Invalid password length.", 12, 24));
 
             password.Value = "asd";
             Assert.False(await password.Validate());
@@ -50,7 +40,7 @@ namespace ZOOMValidation.Tests.Password
         public async Task PasswordNumberTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new PasswordNumberRule<string>("Invalid password number amount.", maximumNumbers: 3));
+            password.ValidationRules.Add(new PasswordNumberRule("Invalid password number amount.", maxNumbers: 3));
 
             password.Value = "asd";
             Assert.False(await password.Validate());
@@ -66,7 +56,7 @@ namespace ZOOMValidation.Tests.Password
         public async Task PasswordUppercaseTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new PasswordUppercaseRule<string>("Invalid password uppercase amount.", maximumNumbers: 3));
+            password.ValidationRules.Add(new PasswordUppercaseRule("Invalid password uppercase amount.", maxUppercase: 3));
 
             password.Value = "asd";
             Assert.False(await password.Validate());
@@ -82,7 +72,7 @@ namespace ZOOMValidation.Tests.Password
         public async Task PasswordLowercaseTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new PasswordLowercaseRule<string>("Invalid password lowercase amount.", maximumNumbers: 3));
+            password.ValidationRules.Add(new PasswordLowercaseRule("Invalid password lowercase amount.", maxLowercase: 3));
 
             password.Value = "ASD";
             Assert.False(await password.Validate());
@@ -98,7 +88,7 @@ namespace ZOOMValidation.Tests.Password
         public async Task PasswordSpecialCharactersTest()
         {
             var password = new ValidatableObject<string>();
-            password.ValidationRules.Add(new PasswordSpecialCharacterRule<string>("Invalid password special characters amount.", maximumNumbers: 3));
+            password.ValidationRules.Add(new PasswordSpecialCharacterRule("Invalid password special characters amount.", maxSpecialCharacters: 3));
 
             password.Value = "asd";
             Assert.False(await password.Validate());

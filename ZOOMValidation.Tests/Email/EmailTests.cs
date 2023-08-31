@@ -8,7 +8,7 @@ namespace ZOOMValidation.Tests.Email
         public async Task ValidEmailTest()
         {
             var email = new ValidatableObject<string>();
-            email.ValidationRules.Add(new ValidEmailRule<string>("Invalid password length."));
+            email.ValidationRules.Add(new ValidEmailRule("Invalid password length."));
 
             email.Value = "asd";
             Assert.False(await email.Validate());

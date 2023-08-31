@@ -2,7 +2,7 @@
 
 namespace ZOOMValidation.Rules
 {
-    public class ValidEmailRule<T> : IValidationRule<T>
+    public class ValidEmailRule : IValidationRule<string>
     {
         private readonly bool removeWhiteSpaces;
         public ValidEmailRule(string errorMessage, bool removeWhiteSpaces = true)
@@ -13,23 +13,19 @@ namespace ZOOMValidation.Rules
 
         public string ErrorMessage { get; }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            if (value is string password)
-            {
-                password = removeWhiteSpaces ? password.Replace(" ", "") : password;
+            value = removeWhiteSpaces ? value.Replace(" ", "") : value;
 
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(password);
-                    return addr.Address == $"{addr}";
-                }
-                catch (FormatException)
-                {
-                    return false;
-                }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(value);
+                return addr.Address == $"{addr}";
             }
-            throw new ArgumentException($"Expected string, got {typeof(T).FullName}.");
+            catch (FormatException)
+            {
+                return false;
+            }
         }
     }
 }

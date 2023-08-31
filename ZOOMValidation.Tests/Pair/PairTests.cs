@@ -18,17 +18,17 @@ namespace ZOOMValidation.Tests.Pair
             var password1 = new ValidatableObject<string>();
             var password2 = new ValidatableObject<string>();
 
-            password1.ValidationRules.Add(new PasswordLengthRule<string>(TO_SHORT, 8));
-            password1.ValidationRules.Add(new PasswordNumberRule<string>(ONE_NUMBER));
-            password1.ValidationRules.Add(new PasswordLowercaseRule<string>(ONE_LOWERCASE));
-            password1.ValidationRules.Add(new PasswordUppercaseRule<string>(ONE_UPPERCASE));
-            password1.ValidationRules.Add(new PasswordSpecialCharacterRule<string>(ONE_SPECIAL));
+            password1.ValidationRules.Add(new PasswordLengthRule(TO_SHORT, 8));
+            password1.ValidationRules.Add(new PasswordNumberRule(ONE_NUMBER));
+            password1.ValidationRules.Add(new PasswordLowercaseRule(ONE_LOWERCASE));
+            password1.ValidationRules.Add(new PasswordUppercaseRule(ONE_UPPERCASE));
+            password1.ValidationRules.Add(new PasswordSpecialCharacterRule(ONE_SPECIAL));
 
-            password2.ValidationRules.Add(new PasswordLengthRule<string>(TO_SHORT, 8));
-            password2.ValidationRules.Add(new PasswordNumberRule<string>(ONE_NUMBER));
-            password2.ValidationRules.Add(new PasswordLowercaseRule<string>(ONE_LOWERCASE));
-            password2.ValidationRules.Add(new PasswordUppercaseRule<string>(ONE_UPPERCASE));
-            password2.ValidationRules.Add(new PasswordSpecialCharacterRule<string>(ONE_SPECIAL));
+            password2.ValidationRules.Add(new PasswordLengthRule(TO_SHORT, 8));
+            password2.ValidationRules.Add(new PasswordNumberRule(ONE_NUMBER));
+            password2.ValidationRules.Add(new PasswordLowercaseRule(ONE_LOWERCASE));
+            password2.ValidationRules.Add(new PasswordUppercaseRule(ONE_UPPERCASE));
+            password2.ValidationRules.Add(new PasswordSpecialCharacterRule(ONE_SPECIAL));
 
             var pair = new ValidatablePair<string>(password1, password2);
             pair.PairValidationRules.Add(new EqualStringRule<string>(EQUAL));

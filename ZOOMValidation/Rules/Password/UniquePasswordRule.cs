@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ZOOMValidation.Rules.Password
 {
-    public class UniquePasswordRule<T> : IValidationRule<T>
+    public class UniquePasswordRule : IValidationRule<string>
     {
         private const string PASSWORD_LIST_PATH = "10-million-password-list-top-1000000.txt";
         public UniquePasswordRule(string errorMessage)
@@ -14,13 +14,9 @@ namespace ZOOMValidation.Rules.Password
 
         public string ErrorMessage { get; }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            if (value is string password)
-            {
-                return !File.ReadLines(PASSWORD_LIST_PATH).Contains(password);
-            }
-            throw new ArgumentException($"Expected string, got {typeof(T).FullName}.");
+            return !File.ReadLines(PASSWORD_LIST_PATH).Contains(value);
         }
     }
 }

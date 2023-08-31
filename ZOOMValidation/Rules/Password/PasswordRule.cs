@@ -2,7 +2,7 @@
 
 namespace ZOOMValidation.Rules.Password
 {
-    public abstract class PasswordRule<T> : IValidationRule<T>
+    public abstract class PasswordRule : IValidationRule<string>
     {
         private readonly int minAmount, maxAmount;
         private readonly Func<char[], int> counter;
@@ -16,14 +16,10 @@ namespace ZOOMValidation.Rules.Password
 
         public string ErrorMessage { get; }
 
-        public bool Check(T value)
+        public bool Check(string value)
         {
-            if (value is string password)
-            {
-                int count = counter(password.ToCharArray());
-                return maxAmount >= count && count >= minAmount;
-            }
-            throw new ArgumentException($"Expected string, got {typeof(T).FullName}.");
+            int count = counter(value.ToCharArray());
+            return maxAmount >= count && count >= minAmount;
         }
     }
 }
