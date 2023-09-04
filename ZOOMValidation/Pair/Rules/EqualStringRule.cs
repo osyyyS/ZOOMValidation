@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace ZOOMValidation.Pair.Rules
+﻿namespace ZOOMValidation.Pair.Rules
 {
-    public class EqualStringRule<T> : IPairValidationRule<T>
+    public class EqualStringRule : IPairValidationRule<string>
     {
         public EqualStringRule(string errorMessage)
         {
@@ -10,13 +8,9 @@ namespace ZOOMValidation.Pair.Rules
         }
         public string ErrorMessage { get; }
 
-        public bool Check(T value, T value2)
+        public bool Check(string value, string value2)
         {
-            if (value is string string1 && value2 is string string2)
-            {
-                return string1 == string2;
-            }
-            throw new ArgumentException($"Expected string, got {typeof(T).FullName}.");
+            return value == value2;
         }
     }
 }
