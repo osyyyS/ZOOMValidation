@@ -31,14 +31,14 @@ public class ValidatableObject<T> : INotifyPropertyChanged
 
   public string Error { get => error; set => SetProperty(ref error, value); }
   private string error;
-  public async Task<bool> Validate()
+  public async ValueTask<bool> Validate()
   {
     foreach (var rule in ValidationRules)
     {
       if (!rule.Check(Value))
       {
         Error = rule.ErrorMessage;
-        return await Task.FromResult(IsValid = false);
+        return IsValid = false;
       }
     }
 
@@ -50,7 +50,7 @@ public class ValidatableObject<T> : INotifyPropertyChanged
         return IsValid = false;
       }
     }
-    return await Task.FromResult(IsValid = true);
+    return IsValid = true;
   }
 
   #region INotifyPropertyChanged
