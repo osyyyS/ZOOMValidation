@@ -1,20 +1,13 @@
 ﻿using System;
 
-namespace ZOOMValidation
-{
-    public class ValidationRule<T> : IValidationRule<T>
-    {
-        public ValidationRule(string errorMessage, Func<T, bool> check)
-        {
-            ErrorMessage = errorMessage;
-            this.check = check;
-        }
-        public string ErrorMessage { get; set; }
+namespace ZOOMValidation;
 
-        private readonly Func<T, bool> check;
-        public bool Check(T value)
-        {
-            return check(value);
-        }
-    }
+public class ValidationRule<T>(string errorMessage, Func<T, bool> check) : IValidationRule<T>
+{
+  public string ErrorMessage { get; set; } = errorMessage;
+
+  public bool Check(T value)
+  {
+    return check(value);
+  }
 }

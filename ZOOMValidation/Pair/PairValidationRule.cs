@@ -1,20 +1,13 @@
 ﻿using System;
 
-namespace ZOOMValidation.Pair
-{
-    public class PairValidationRule<T> : IPairValidationRule<T>
-    {
-        public PairValidationRule(string errorMessage, Func<T, T, bool> check)
-        {
-            ErrorMessage = errorMessage;
-            this.check = check;
-        }
-        public string ErrorMessage { get; set; }
+namespace ZOOMValidation.Pair;
 
-        private readonly Func<T, T, bool> check;
-        public bool Check(T value, T value2)
-        {
-            return check(value, value2);
-        }
-    }
+public class PairValidationRule<T>(string errorMessage, Func<T, T, bool> check) : IPairValidationRule<T>
+{
+  public string ErrorMessage { get; set; } = errorMessage;
+
+  public bool Check(T value, T value2)
+  {
+    return check(value, value2);
+  }
 }

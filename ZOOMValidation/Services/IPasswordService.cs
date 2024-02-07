@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace ZOOMValidation.Services
+namespace ZOOMValidation.Services;
+
+internal interface IPasswordService
 {
-    internal interface IPasswordService
-    {
-        Task<bool> IsSecure(string password);
-    }
+  Task<bool> IsSecure(string password);
 }

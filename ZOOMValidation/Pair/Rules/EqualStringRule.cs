@@ -1,16 +1,11 @@
-﻿namespace ZOOMValidation.Pair.Rules
-{
-    public class EqualStringRule : IPairValidationRule<string>
-    {
-        public EqualStringRule(string errorMessage)
-        {
-            ErrorMessage = errorMessage;
-        }
-        public string ErrorMessage { get; }
+﻿namespace ZOOMValidation.Pair.Rules;
 
-        public bool Check(string value, string value2)
-        {
-            return value == value2;
-        }
-    }
+public class EqualStringRule(string errorMessage) : IPairValidationRule<string>
+{
+  public string ErrorMessage { get; } = errorMessage;
+
+  public bool Check(string value, string value2)
+  {
+    return value == value2;
+  }
 }

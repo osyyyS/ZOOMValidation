@@ -1,8 +1,7 @@
-﻿namespace ZOOMValidation
+﻿namespace ZOOMValidation;
+
+public interface IValidationRule<T>
 {
-    public interface IValidationRule<T>
-    {
-        string ErrorMessage { get; }
-        bool Check(T value);
-    }
+  string ErrorMessage { get; }
+  bool Check(T value);
 }
