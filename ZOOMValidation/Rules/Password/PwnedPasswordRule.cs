@@ -1,26 +1,16 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ZOOMValidation.Services;
 
-namespace ZOOMValidation.Rules.Password
+namespace ZOOMValidation.Rules.Password;
+
+public class PwnedPasswordRule(string pwnedPasswordMessage) : IAsyncValidationRule<string>
 {
-    public class PwnedPasswordRule : IAsyncValidationRule<string>
-    {
-        private readonly IPasswordService passwordService;
+  private readonly HaveIBeenPwnedService passwordService = new();
 
-        public PwnedPasswordRule(string pwnedPasswordMessage)
-        {
-            passwordService = new HaveIBeenPwnedService();
-            ErrorMessage = pwnedPasswordMessage;
-        }
+  public string ErrorMessage { get; } = pwnedPasswordMessage;
 
-        public string ErrorMessage { get; }
-
-        public async Task<bool> CheckAsync(string value)
-        {
-            return await passwordService.IsSecure(value);
-        }
-    }
+  public async Task<bool> CheckAsync(string value)
+  {
+    return await passwordService.IsSecure(value);
+  }
 }

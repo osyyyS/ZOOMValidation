@@ -1,31 +1,23 @@
 ﻿using System;
 
-namespace ZOOMValidation.Rules
+namespace ZOOMValidation.Rules;
+
+public class ValidEmailRule(string errorMessage, bool removeWhiteSpaces = true) : IValidationRule<string>
 {
-    public class ValidEmailRule : IValidationRule<string>
+  public string ErrorMessage { get; } = errorMessage;
+
+  public bool Check(string value)
+  {
+    value = removeWhiteSpaces ? value.Replace(" ", "") : value;
+
+    try
     {
-        private readonly bool removeWhiteSpaces;
-        public ValidEmailRule(string errorMessage, bool removeWhiteSpaces = true)
-        {
-            ErrorMessage = errorMessage;
-            this.removeWhiteSpaces = removeWhiteSpaces;
-        }
-
-        public string ErrorMessage { get; }
-
-        public bool Check(string value)
-        {
-            value = removeWhiteSpaces ? value.Replace(" ", "") : value;
-
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(value);
-                return addr.Address == $"{addr}";
-            }
-            catch (FormatException)
-            {
-                return false;
-            }
-        }
+      var addr = new System.Net.Mail.MailAddress(value);
+      return addr.Address == $"{addr}";
     }
+    catch (FormatException)
+    {
+      return false;
+    }
+  }
 }

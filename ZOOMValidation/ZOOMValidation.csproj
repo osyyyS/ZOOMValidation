@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://github.com/osyyyS/ZOOMValidation</PackageProjectUrl>
@@ -11,11 +10,9 @@
     <RepositoryUrl>https://github.com/osyyyS/ZOOMValidation</RepositoryUrl>
     <Version>1.0.3</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <None Remove="LICENSE" />
   </ItemGroup>
-
   <ItemGroup>
     <None Include="..\LICENSE">
       <Pack>True</Pack>
@@ -26,5 +23,4 @@
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
-
 </Project>

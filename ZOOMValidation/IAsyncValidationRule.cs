@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 
-namespace ZOOMValidation
+namespace ZOOMValidation;
+
+public interface IAsyncValidationRule<T>
 {
-    public interface IAsyncValidationRule<T>
-    {
-        string ErrorMessage { get; }
-        Task<bool> CheckAsync(T value);
-    }
+  string ErrorMessage { get; }
+  Task<bool> CheckAsync(T value);
 }
