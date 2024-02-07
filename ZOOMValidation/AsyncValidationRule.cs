@@ -7,8 +7,8 @@ public class AsyncValidationRule<T>(string errorMessage, Func<T, Task<bool>> che
 {
   public string ErrorMessage { get; set; } = errorMessage;
 
-  public async Task<bool> CheckAsync(T value)
+  public Task<bool> CheckAsync(T value)
   {
-    return await check(value);
+    return check(value);
   }
 }

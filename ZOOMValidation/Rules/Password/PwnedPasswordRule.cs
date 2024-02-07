@@ -9,8 +9,8 @@ public class PwnedPasswordRule(string pwnedPasswordMessage) : IAsyncValidationRu
 
   public string ErrorMessage { get; } = pwnedPasswordMessage;
 
-  public async Task<bool> CheckAsync(string value)
+  public Task<bool> CheckAsync(string value)
   {
-    return await passwordService.IsSecure(value);
+    return passwordService.IsSecure(value);
   }
 }

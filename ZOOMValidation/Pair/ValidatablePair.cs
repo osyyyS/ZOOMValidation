@@ -17,14 +17,14 @@ public class ValidatablePair<T>(ValidatableObject<T> item1, ValidatableObject<T>
 
   public string Error { get => error; set => SetProperty(ref error, value); }
   private string error;
-  public async Task<bool> Validate()
+  public async ValueTask<bool> Validate()
   {
     foreach (var rule in PairValidationRules)
     {
       if (!rule.Check(Item1.Value, Item2.Value))
       {
         Error = rule.ErrorMessage;
-        return await Task.FromResult(IsValid = false);
+        return IsValid = false;
       }
     }
 
@@ -49,7 +49,7 @@ public class ValidatablePair<T>(ValidatableObject<T> item1, ValidatableObject<T>
       return IsValid = false;
     }
 
-    return await Task.FromResult(IsValid = true);
+    return IsValid = true;
   }
   #region INotifyPropertyChanged
   public event PropertyChangedEventHandler PropertyChanged;
